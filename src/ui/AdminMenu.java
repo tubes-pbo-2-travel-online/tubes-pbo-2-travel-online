@@ -1,38 +1,53 @@
 package ui;
 
-import config.DatabaseHelper;
 import java.util.Scanner;
+import model.Admin;
 
 public class AdminMenu {
-    
-    public void tampilkan() {
-        Scanner scanner = new Scanner(System.in);
-        boolean isRunning = true;
 
-        while (isRunning) {
-            System.out.println("\n=== MENU ADMIN ===");
-            System.out.println("1. Lihat Daftar Jadwal");
-            System.out.println("2. Logout");
-            System.out.print("Pilih: ");
-            
-            String pilih = scanner.nextLine();
+    private Admin admin;
+    private Scanner scanner = new Scanner(System.in);
 
-            switch (pilih) {
-                case "1":
-                    DatabaseHelper.tampilkanJadwal();
+    public AdminMenu(Admin admin) {
+        this.admin = admin;
+    }
 
-                    System.out.println("\n[Tekan Enter untuk kembali]");
+    public void show() {
+        int pilihan;
+
+        do {
+            admin.viewDashboard();
+            System.out.print("Pilih menu: ");
+            pilihan = scanner.nextInt();
+
+            switch (pilihan) {
+                case 1:
+                    admin.kelolaJadwal();
+                    break;
+
+                case 2:
+                    System.out.print("ID Pemesanan: ");
+                    int idBayar = scanner.nextInt();
+                    admin.verifikasiPembayaran(idBayar);
+                    break;
+
+                case 3:
+                    System.out.print("ID Pemesanan: ");
+                    int id = scanner.nextInt();
                     scanner.nextLine();
+                    System.out.print("Status baru: ");
+                    String status = scanner.nextLine();
+                    admin.ubahStatusPemesanan(id, status);
                     break;
-                    
-                case "2":
-                    System.out.println("Logout berhasil.");
-                    isRunning = false;
+
+                case 4:
+                    admin.logout();
                     break;
-                    
+
                 default:
-                    System.out.println("Pilihan salah.");
+                    System.out.println("Menu tidak valid!");
             }
-        }
+
+        } while (pilihan != 4);
     }
 }

@@ -1,6 +1,6 @@
-package models;
+package model;
 
-public class Admin extends Users {
+public class Admin extends User {
 
     public Admin(Integer id, String nama, String noTelp, String email,
                  String username, String password) {
@@ -21,11 +21,13 @@ public class Admin extends Users {
         System.out.println("Admin sedang mengelola jadwal travel...");
     }
 
+   
     public boolean verifikasiPembayaran(Integer idPemesanan) {
         System.out.println("Memverifikasi pembayaran untuk pemesanan ID: " + idPemesanan);
         return true; // simulasi berhasil
     }
 
+    
     public void ubahStatusPemesanan(Integer idPemesanan, String status) {
         System.out.println("Status pemesanan ID " + idPemesanan +
                 " diubah menjadi: " + status);

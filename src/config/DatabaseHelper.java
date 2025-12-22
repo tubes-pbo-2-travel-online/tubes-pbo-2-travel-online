@@ -1,7 +1,8 @@
 package config;
 
-import models.*;
 import java.sql.*;
+
+import model.*;
 
 public class DatabaseHelper {
 
@@ -16,8 +17,8 @@ public class DatabaseHelper {
         return conn;
     }
 
-    public static Users cekLogin(String username, String password) {
-        Users user = null;
+    public static User cekLogin(String username, String password) {
+        User user = null;
         try {
             Connection conn = connect();
             String sql = "SELECT * FROM users WHERE username = ? AND password = ?";

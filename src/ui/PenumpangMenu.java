@@ -1,36 +1,53 @@
 package ui;
 
 import java.util.Scanner;
+import model.*;
 
 public class PenumpangMenu {
 
-    public void tampilkan() {
-        Scanner scanner = new Scanner(System.in);
-        boolean isRunning = true;
+    private Penumpang penumpang;
+    private Scanner scanner = new Scanner(System.in);
 
-        while (isRunning) {
-            System.out.println("\n=== MENU PENUMPANG ===");
-            System.out.println("1. Cari Tiket");
-            System.out.println("2. Cek Riwayat");
-            System.out.println("3. Logout");
-            System.out.print("Pilih: ");
+    public PenumpangMenu(Penumpang penumpang) {
+        this.penumpang = penumpang;
+    }
 
-            String pilih = scanner.nextLine();
+    public void show() {
+        int pilihan;
 
-            switch (pilih) {
-                case "1":
-                    System.out.println("[INFO] Fitur Cari Tiket sedang dibuat...");
+        do {
+            penumpang.viewDashboard();
+            System.out.print("Pilih menu: ");
+            pilihan = scanner.nextInt();
+
+            switch (pilihan) {
+                case 1:
+                    Jadwal jadwal = new Jadwal(1, "Bandung", "Jakarta",
+                            "2025-01-01", "08:00", 100000.0);
+                    Kursi kursi = new Kursi(1, 1, jadwal, "Kosong");
+
+                    Pemesanan p = penumpang.pesanTiket(jadwal, kursi);
+                    System.out.println(p);
                     break;
-                case "2":
-                    System.out.println("[INFO] Belum ada riwayat pesanan.");
+
+                case 2:
+                    penumpang.lihatRiwayat();
                     break;
-                case "3":
-                    System.out.println("Sampai jumpa!");
-                    isRunning = false;
+
+                case 3:
+                    System.out.print("ID Pemesanan: ");
+                    int idBayar = scanner.nextInt();
+                    penumpang.bayar(idBayar);
                     break;
+
+                case 4:
+                    penumpang.logout();
+                    break;
+
                 default:
-                    System.out.println("Pilihan tidak valid.");
+                    System.out.println("Menu tidak valid!");
             }
-        }
+
+        } while (pilihan != 4);
     }
 }

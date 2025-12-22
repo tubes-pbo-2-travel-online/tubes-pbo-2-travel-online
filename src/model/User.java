@@ -1,6 +1,8 @@
-package models;
+package model;
 
-public abstract class Users {
+
+public abstract class User {
+
     protected Integer id;
     protected String nama;
     protected String noTelp;
@@ -9,7 +11,7 @@ public abstract class Users {
     protected String password;
     protected String role;
 
-    public Users(Integer id, String nama, String noTelp, String email,
+    public User(Integer id, String nama, String noTelp, String email,
                 String username, String password, String role) {
         this.id = id;
         this.nama = nama;

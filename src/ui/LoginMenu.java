@@ -1,34 +1,43 @@
 package ui;
 
-import config.DatabaseHelper;
-import models.Users;
 import java.util.Scanner;
+import model.Admin;
+import model.Penumpang;
+import model.User;
 
 public class LoginMenu {
-    Scanner scanner = new Scanner(System.in);
 
-    public void tampilkan() {
-        System.out.println("\n=== LOGIN TIKET TRAVEL ===");
+    private Scanner scanner = new Scanner(System.in);
+
+    public void show() {
+        System.out.println("=== SISTEM PEMESANAN TIKET TRAVEL ===");
+
         System.out.print("Username: ");
-        String u = scanner.nextLine();
+        String username = scanner.nextLine();
+
         System.out.print("Password: ");
-        String p = scanner.nextLine();
+        String password = scanner.nextLine();
 
-        // Panggil Helper (yang sudah direvisi tadi)
-        Users hasil = DatabaseHelper.cekLogin(u, p);
+        User user;
 
-        if (hasil != null) {
-            // Berhasil Login
-            hasil.viewDashboard(); // Polimorfisme jalan disini
-
-            // Cek Role untuk redirect menu
-            if (hasil.getRole().equals("admin")) {
-                new AdminMenu().tampilkan(); 
-            } else {
-                new PenumpangMenu().tampilkan();
-            }
+        if (username.equals("admin")) {
+            user = new Admin(1, "Admin", "-", "-", "admin", "admin");
         } else {
-            System.out.println("[!] Login Gagal. User tidak ditemukan.");
+            user = new Penumpang(2, "Penumpang", "08123", "user@mail.com",
+                    username, password);
+        }
+
+        if (user.login(username, password)) {
+            System.out.println("Login berhasil!\n");
+
+            if (user.getRole().equals("admin")) {
+                new AdminMenu((Admin) user).show();
+            } else {
+                new PenumpangMenu((Penumpang) user).show();
+            }
+
+        } else {
+            System.out.println("Login gagal!");
         }
     }
 }
