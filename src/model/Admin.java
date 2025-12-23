@@ -7,7 +7,6 @@ public class Admin extends User {
         super(id, nama, noTelp, email, username, password, "admin");
     }
 
-
     @Override
     public void viewDashboard() {
         System.out.println("=== Dashboard Admin ===");
@@ -21,12 +20,10 @@ public class Admin extends User {
         System.out.println("Admin sedang mengelola jadwal travel...");
     }
 
-   
     public boolean verifikasiPembayaran(Integer idPemesanan) {
         System.out.println("Memverifikasi pembayaran untuk pemesanan ID: " + idPemesanan);
-        return true; // simulasi berhasil
+        return true;
     }
-
     
     public void ubahStatusPemesanan(Integer idPemesanan, String status) {
         System.out.println("Status pemesanan ID " + idPemesanan +

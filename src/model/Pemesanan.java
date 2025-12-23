@@ -23,6 +23,19 @@ public class Pemesanan implements InfoDisplay {
         kursi.setStatus("Terisi");
     }
 
+    public void updateStatus(String status) {
+        this.status = status;
+
+        if (status.equalsIgnoreCase("Batal")) {
+            kursi.setStatus("Kosong");
+        }
+    }
+
+    @Override
+    public void showInfo() {
+        System.out.println("Pemesanan ID: " + id + " | Status: " + status + " | Total: " + totalHarga);
+    }
+
     public Integer getId() {
         return id;
     }
@@ -55,30 +68,11 @@ public class Pemesanan implements InfoDisplay {
         return tanggalPemesanan;
     }
 
-
-    public void updateStatus(String status) {
-        this.status = status;
-
-        if (status.equalsIgnoreCase("Batal")) {
-            kursi.setStatus("Kosong");
-        }
-    }
-    
-
-    @Override
-    public void showInfo() {
-        System.out.println("Pemesanan ID: " + id + " | Status: " + status + " | Total: " + totalHarga);
+    public Pembayaran getPembayaran() { 
+        return pembayaran;
     }
 
-    @Override
-    public String toString() {
-        return "Pemesanan{" +
-                "penumpang=" + penumpang.getNama() +
-                ", jadwal=" + jadwal.getAsal() + " → " + jadwal.getTujuan() +
-                ", kursi=" + kursi.getNomorKursi() +
-                ", totalHarga=" + totalHarga +
-                ", status='" + status + '\'' +
-                ", tanggal=" + tanggalPemesanan +
-                '}';
+    public void setPembayaran(Pembayaran pembayaran) { 
+        this.pembayaran = pembayaran; 
     }
 }

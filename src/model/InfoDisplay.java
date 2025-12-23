@@ -6,7 +6,5 @@ package model;
  * (sesuai class diagram & prinsip interface PBO)
  */
 public interface InfoDisplay {
-
     void showInfo();
-
 }
