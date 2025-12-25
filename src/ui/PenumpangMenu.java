@@ -54,9 +54,7 @@ public class PenumpangMenu {
                         System.out.println("Belum ada riwayat pesanan.");
                     } else {
                         for(Pemesanan p : history) {
-                            System.out.println("ID: " + p.getId() + 
-                                               " | Tujuan: " + p.getJadwal().getTujuan() + 
-                                               " | Status: " + p.getStatus());
+                            System.out.println("ID: " + p.getId() + " | Tujuan: " + p.getJadwal().getTujuan() + " | Status: " + p.getStatus());
                         }
                     }
                     break;

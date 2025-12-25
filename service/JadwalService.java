@@ -5,6 +5,7 @@ import model.Jadwal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.Kursi;
 
 public class JadwalService {
 

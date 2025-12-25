@@ -1,6 +1,5 @@
 package model;
 
-
 public abstract class User {
 
     protected Integer id;

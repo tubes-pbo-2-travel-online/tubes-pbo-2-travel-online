@@ -2,8 +2,7 @@ package model;
 
 public class Admin extends User {
 
-    public Admin(Integer id, String nama, String noTelp, String email,
-                 String username, String password) {
+    public Admin(Integer id, String nama, String noTelp, String email,String username, String password) {
         super(id, nama, noTelp, email, username, password, "admin");
     }
 
@@ -26,7 +25,6 @@ public class Admin extends User {
     }
     
     public void ubahStatusPemesanan(Integer idPemesanan, String status) {
-        System.out.println("Status pemesanan ID " + idPemesanan +
-                " diubah menjadi: " + status);
+        System.out.println("Status pemesanan ID " + idPemesanan + " diubah menjadi: " + status);
     }
 }

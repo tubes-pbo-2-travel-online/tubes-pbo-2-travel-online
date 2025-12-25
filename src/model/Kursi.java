@@ -31,7 +31,6 @@ public class Kursi {
         return jadwal;
     }
 
-
     public boolean cekKetersediaan() {
         return status.equalsIgnoreCase("Kosong");
     }
